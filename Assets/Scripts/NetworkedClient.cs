@@ -26,9 +26,14 @@ public class NetworkedClient : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
-            SendMessageToHost("Hello from client");
-
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            SendMessageToHost(ClientToServerSignifiers.CreateAccount+ ","+ "Negar"+ ","+"abcd");
+        }
+        else if (Input.GetKeyDown(KeyCode.L))
+        {
+            SendMessageToHost(ClientToServerSignifiers.logInAccount + "," + "Negar" + "," + "abcd");
+        }
         UpdateNetworkConnection();
     }
 
@@ -105,6 +110,31 @@ public class NetworkedClient : MonoBehaviour
     private void ProcessRecievedMsg(string msg, int id)
     {
         Debug.Log("msg recieved = " + msg + ".  connection id = " + id);
+      string[] csv =  msg.Split(',');
+        int signifier = int.Parse(csv[0]);
+        if (signifier == ServerToCientSignifiers.CreateAccountFail)
+        {
+
+            Debug.Log("CreateAccountFailed");
+        }
+        else if(signifier ==ServerToCientSignifiers.CreateAccountSuccess)
+        {
+
+            Debug.Log("CreateAccountSuccess");
+        }
+        else if (signifier == ServerToCientSignifiers.logInFail)
+        {
+
+            Debug.Log("LoginFailed");
+
+        }
+        else if(signifier == ServerToCientSignifiers.logInSuccess)
+        {
+
+            Debug.Log("LoginSuccess");
+        }
+
+
     }
 
     public bool IsConnected()
@@ -113,4 +143,17 @@ public class NetworkedClient : MonoBehaviour
     }
 
 
+}
+static public class ClientToServerSignifiers
+{
+    public const int CreateAccount = 1;
+  public   const int logInAccount = 2;
+}
+static public class ServerToCientSignifiers
+{
+    public const int CreateAccountFail = 1;
+    public const int logInFail = 2;
+
+    public const int CreateAccountSuccess = 3;
+    public const int logInSuccess = 4;
 }
