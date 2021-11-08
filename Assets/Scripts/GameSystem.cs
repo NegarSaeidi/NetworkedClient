@@ -9,7 +9,7 @@ public class GameSystem : MonoBehaviour
 
     GameObject submitButton, userNameInput, passwordInput, createToggle, loginToggle;
 
-
+    GameObject networkedClient;
     void Start()
     {
         GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
@@ -26,6 +26,8 @@ public class GameSystem : MonoBehaviour
                 loginToggle = go;
             else if (go.name == "CreateToggle")
                 createToggle = go;
+            else if (go.name == "NetworkedClient")
+                networkedClient = go;
         }
 
         submitButton.GetComponent<Button>().onClick.AddListener(SubmitButtonPressed);
@@ -37,19 +39,28 @@ public class GameSystem : MonoBehaviour
 
     public void SubmitButtonPressed()
     {
-        //We want to send login stuff to server!!!!!!!!
-        Debug.Log("yoyoyo");
+        string u = userNameInput.GetComponent<InputField>().text;
+        string p = passwordInput.GetComponent<InputField>().text;
+
+        string msg;
+
+        if (createToggle.GetComponent<Toggle>().isOn)
+            msg = ClientToServerSignifiers.CreateAccount + "," + u + "," + p;
+        else
+            msg = ClientToServerSignifiers.logInAccount + "," + u + "," + p;
+        networkedClient.GetComponent<NetworkedClient>().SendMessageToHost(msg);
+        
     }
 
     public void LoginToggleChanged(bool newValue)
     {
         createToggle.GetComponent<Toggle>().SetIsOnWithoutNotify(!newValue);
-        Debug.Log("yoyoyo555");
+       
     }
 
     public void CreateToggleChanged(bool newValue)
     {
         loginToggle.GetComponent<Toggle>().SetIsOnWithoutNotify(!newValue);
-        Debug.Log("yoyoyo///");
+       
     }
 }
