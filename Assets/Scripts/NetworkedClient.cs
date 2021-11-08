@@ -17,10 +17,22 @@ public class NetworkedClient : MonoBehaviour
     bool isConnected = false;
     int ourClientID;
 
+    GameObject gameSystemObject;
+
     // Start is called before the first frame update
     void Start()
     {
-        Connect();
+        GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
+
+        foreach (GameObject go in allObjects)
+        {
+            if(go.GetComponent<GameSystem>() != null)
+            {
+                gameSystemObject = go;
+            }
+        }
+
+            Connect();
     }
 
     // Update is called once per frame
@@ -114,12 +126,12 @@ public class NetworkedClient : MonoBehaviour
         int signifier = int.Parse(csv[0]);
         if (signifier == ServerToCientSignifiers.CreateAccountFail)
         {
-
+           
             Debug.Log("CreateAccountFailed");
         }
         else if(signifier ==ServerToCientSignifiers.CreateAccountSuccess)
         {
-
+            gameSystemObject.GetComponent<GameSystem>().ChangeState(GameStates.MainMenu);
             Debug.Log("CreateAccountSuccess");
         }
         else if (signifier == ServerToCientSignifiers.logInFail)
@@ -130,7 +142,7 @@ public class NetworkedClient : MonoBehaviour
         }
         else if(signifier == ServerToCientSignifiers.logInSuccess)
         {
-
+            gameSystemObject.GetComponent<GameSystem>().ChangeState(GameStates.MainMenu);
             Debug.Log("LoginSuccess");
         }
 

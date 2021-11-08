@@ -7,7 +7,7 @@ public class GameSystem : MonoBehaviour
 {
 
 
-    GameObject submitButton, userNameInput, passwordInput, createToggle, loginToggle;
+    GameObject submitButton, joinRoomButton, userNameInput, passwordInput, createToggle, loginToggle,UsernameLabel, PasswordLabel;
 
     GameObject networkedClient;
     void Start()
@@ -28,16 +28,29 @@ public class GameSystem : MonoBehaviour
                 createToggle = go;
             else if (go.name == "NetworkedClient")
                 networkedClient = go;
+            else if (go.name == "JoinRoom")
+                joinRoomButton = go;
+            else if (go.name == "UsernameLabel")
+                UsernameLabel = go;
+            else if (go.name == "PasswordLabel")
+                PasswordLabel= go;
         }
 
         submitButton.GetComponent<Button>().onClick.AddListener(SubmitButtonPressed);
         loginToggle.GetComponent<Toggle>().onValueChanged.AddListener(LoginToggleChanged);
         createToggle.GetComponent<Toggle>().onValueChanged.AddListener(CreateToggleChanged);
+        joinRoomButton.GetComponent<Button>().onClick.AddListener(JoinRoomPressed);
+
+       
+        ChangeState(GameStates.LoginMenu);
+
     }
 
-   
+    public void JoinRoomPressed()
+    {
+    }
 
-    public void SubmitButtonPressed()
+        public void SubmitButtonPressed()
     {
         string u = userNameInput.GetComponent<InputField>().text;
         string p = passwordInput.GetComponent<InputField>().text;
@@ -63,4 +76,42 @@ public class GameSystem : MonoBehaviour
         loginToggle.GetComponent<Toggle>().SetIsOnWithoutNotify(!newValue);
        
     }
+
+    public void ChangeState(int newState)
+    {
+        submitButton.SetActive(false);
+        joinRoomButton.SetActive(false);
+        userNameInput.SetActive(false);
+        passwordInput.SetActive(false);
+        createToggle.SetActive(false);
+        loginToggle.SetActive(false);
+
+        if (newState == GameStates.LoginMenu)
+        {
+            submitButton.SetActive(true);
+            userNameInput.SetActive(true);
+            passwordInput.SetActive(true);
+            createToggle.SetActive(true);
+            loginToggle.SetActive(true);
+        }
+        else if (newState == GameStates.waitingInQueue)
+        {
+            joinRoomButton.SetActive(true);
+        }
+        else if (newState == GameStates.MainMenu)
+        {
+            joinRoomButton.SetActive(true);
+        }
+        else if(newState == GameStates.tictactoe)
+        {
+
+        }
+    }
+}
+static public class GameStates
+{
+    public const int LoginMenu = 1;
+    public const int MainMenu = 2;
+    public const int waitingInQueue = 3;
+    public const int tictactoe = 4;
 }
