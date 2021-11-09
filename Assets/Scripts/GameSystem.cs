@@ -7,7 +7,7 @@ public class GameSystem : MonoBehaviour
 {
 
 
-    GameObject submitButton, joinRoomButton, userNameInput, passwordInput, createToggle, loginToggle,UsernameLabel, PasswordLabel;
+    GameObject submitButton, joinRoomButton, userNameInput, passwordInput, createToggle, loginToggle,UsernameLabel, PasswordLabel, playTicTacToe;
 
     GameObject networkedClient;
     void Start()
@@ -34,12 +34,15 @@ public class GameSystem : MonoBehaviour
                 UsernameLabel = go;
             else if (go.name == "PasswordLabel")
                 PasswordLabel= go;
+            else if (go.name == "PlayTicTacToe")
+                playTicTacToe = go;
         }
 
         submitButton.GetComponent<Button>().onClick.AddListener(SubmitButtonPressed);
         loginToggle.GetComponent<Toggle>().onValueChanged.AddListener(LoginToggleChanged);
         createToggle.GetComponent<Toggle>().onValueChanged.AddListener(CreateToggleChanged);
         joinRoomButton.GetComponent<Button>().onClick.AddListener(JoinRoomPressed);
+        playTicTacToe.GetComponent<Button>().onClick.AddListener(PlayTicTacToePressed);
 
        
         ChangeState(GameStates.LoginMenu);
@@ -48,9 +51,15 @@ public class GameSystem : MonoBehaviour
 
     public void JoinRoomPressed()
     {
+        networkedClient.GetComponent<NetworkedClient>().SendMessageToHost(ClientToServerSignifiers.JoinGameRoomQueue+"");
+        ChangeState(GameStates.waitingInQueue);
     }
-
-        public void SubmitButtonPressed()
+    public void PlayTicTacToePressed()
+    {
+        networkedClient.GetComponent<NetworkedClient>().SendMessageToHost(ClientToServerSignifiers.TicTacToe + "");
+       
+    }
+    public void SubmitButtonPressed()
     {
         string u = userNameInput.GetComponent<InputField>().text;
         string p = passwordInput.GetComponent<InputField>().text;
@@ -85,6 +94,9 @@ public class GameSystem : MonoBehaviour
         passwordInput.SetActive(false);
         createToggle.SetActive(false);
         loginToggle.SetActive(false);
+        UsernameLabel.SetActive(false);
+        PasswordLabel.SetActive(false);
+        playTicTacToe.SetActive(false);
 
         if (newState == GameStates.LoginMenu)
         {
@@ -93,6 +105,8 @@ public class GameSystem : MonoBehaviour
             passwordInput.SetActive(true);
             createToggle.SetActive(true);
             loginToggle.SetActive(true);
+            UsernameLabel.SetActive(true);
+            PasswordLabel.SetActive(true);
         }
         else if (newState == GameStates.waitingInQueue)
         {
@@ -104,7 +118,7 @@ public class GameSystem : MonoBehaviour
         }
         else if(newState == GameStates.tictactoe)
         {
-
+            playTicTacToe.SetActive(true);
         }
     }
 }

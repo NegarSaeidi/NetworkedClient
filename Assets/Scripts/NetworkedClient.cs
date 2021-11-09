@@ -145,6 +145,16 @@ public class NetworkedClient : MonoBehaviour
             gameSystemObject.GetComponent<GameSystem>().ChangeState(GameStates.MainMenu);
             Debug.Log("LoginSuccess");
         }
+        else if (signifier == ServerToCientSignifiers.GameStart)
+        {
+            gameSystemObject.GetComponent<GameSystem>().ChangeState(GameStates.tictactoe);
+           
+        }
+        else if (signifier == ServerToCientSignifiers.OpponentPlay)
+        {
+           
+            Debug.Log("Opponent play!");
+        }
 
 
     }
@@ -160,6 +170,8 @@ static public class ClientToServerSignifiers
 {
     public const int CreateAccount = 1;
   public   const int logInAccount = 2;
+    public const int JoinGameRoomQueue = 3;
+    public const int TicTacToe = 4;
 }
 static public class ServerToCientSignifiers
 {
@@ -168,4 +180,6 @@ static public class ServerToCientSignifiers
 
     public const int CreateAccountSuccess = 3;
     public const int logInSuccess = 4;
+    public const int OpponentPlay = 5;
+    public const int GameStart = 6;
 }
