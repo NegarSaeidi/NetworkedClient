@@ -17,7 +17,11 @@ public class NetworkedClient : MonoBehaviour
     bool isConnected = false;
     int ourClientID;
 
+    public bool gotReplied = false;
+
     GameObject gameSystemObject;
+
+    public string tempBuffer="here";
 
     // Start is called before the first frame update
     void Start()
@@ -121,9 +125,11 @@ public class NetworkedClient : MonoBehaviour
 
     private void ProcessRecievedMsg(string msg, int id)
     {
+       
         Debug.Log("msg recieved = " + msg + ".  connection id = " + id);
       string[] csv =  msg.Split(',');
         int signifier = int.Parse(csv[0]);
+    
         if (signifier == ServerToCientSignifiers.CreateAccountFail)
         {
            
@@ -145,6 +151,12 @@ public class NetworkedClient : MonoBehaviour
             gameSystemObject.GetComponent<GameSystem>().ChangeState(GameStates.MainMenu);
             Debug.Log("LoginSuccess");
         }
+        else if (signifier == ServerToCientSignifiers.chatReply)
+        {
+         
+            gotReplied = true;
+            tempBuffer = "Player " + csv[2] + " : " + csv[1] + "\n";
+        }
         else if (signifier == ServerToCientSignifiers.GameStart)
         {
             gameSystemObject.GetComponent<GameSystem>().ChangeState(GameStates.tictactoe);
@@ -155,6 +167,8 @@ public class NetworkedClient : MonoBehaviour
            
             Debug.Log("Opponent play!");
         }
+      
+
 
 
     }
@@ -172,6 +186,7 @@ static public class ClientToServerSignifiers
   public   const int logInAccount = 2;
     public const int JoinGameRoomQueue = 3;
     public const int TicTacToe = 4;
+    public const int chat = 5;
 }
 static public class ServerToCientSignifiers
 {
@@ -182,4 +197,5 @@ static public class ServerToCientSignifiers
     public const int logInSuccess = 4;
     public const int OpponentPlay = 5;
     public const int GameStart = 6;
+    public const int chatReply = 7;
 }

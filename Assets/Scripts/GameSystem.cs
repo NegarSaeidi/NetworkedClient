@@ -7,8 +7,8 @@ public class GameSystem : MonoBehaviour
 {
 
 
-    GameObject submitButton, joinRoomButton, userNameInput, passwordInput, createToggle, loginToggle,UsernameLabel, PasswordLabel, playTicTacToe;
-
+    GameObject submitButton, joinRoomButton, userNameInput, passwordInput, createToggle, loginToggle,UsernameLabel, PasswordLabel, playTicTacToe, chatPage, chatInput, chatBox,sendChat;
+    bool inRoom = false, receivedMsg=true;
     GameObject networkedClient;
     void Start()
     {
@@ -36,19 +36,58 @@ public class GameSystem : MonoBehaviour
                 PasswordLabel= go;
             else if (go.name == "PlayTicTacToe")
                 playTicTacToe = go;
+            else if (go.name == "ChatPage")
+                chatPage = go;
+            else if (go.name == "ChatBox")
+                chatBox = go;
+            else if (go.name == "ChatInput")
+                chatInput = go;
+            else if (go.name == "SendChat")
+                sendChat = go;
+
         }
 
         submitButton.GetComponent<Button>().onClick.AddListener(SubmitButtonPressed);
+        sendChat.GetComponent<Button>().onClick.AddListener(SendChatPressed);
         loginToggle.GetComponent<Toggle>().onValueChanged.AddListener(LoginToggleChanged);
         createToggle.GetComponent<Toggle>().onValueChanged.AddListener(CreateToggleChanged);
         joinRoomButton.GetComponent<Button>().onClick.AddListener(JoinRoomPressed);
         playTicTacToe.GetComponent<Button>().onClick.AddListener(PlayTicTacToePressed);
+        
 
        
         ChangeState(GameStates.LoginMenu);
 
     }
+    private void Update()
+    {
+        if (inRoom)
+        {
+           
+            if (networkedClient.GetComponent<NetworkedClient>().gotReplied)
+            {
 
+             
+                networkedClient.GetComponent<NetworkedClient>().gotReplied = false;
+                chatBox.GetComponent<Text>().text += networkedClient.GetComponent<NetworkedClient>().tempBuffer;
+               
+            }
+        }
+
+    }
+    public void SendChatPressed()
+    {
+        Debug.LogWarning(chatInput.GetComponent<InputField>().GetComponentInChildren<Text>().text);
+        string msg = ClientToServerSignifiers.chat + "," + chatInput.GetComponent<InputField>().GetComponentInChildren<Text>().text;
+        networkedClient.GetComponent<NetworkedClient>().SendMessageToHost(msg);
+      
+        chatInput.GetComponent<InputField>().text = string.Empty;
+
+    }
+    public void gotResponse()
+    {
+
+    }
     public void JoinRoomPressed()
     {
         networkedClient.GetComponent<NetworkedClient>().SendMessageToHost(ClientToServerSignifiers.JoinGameRoomQueue+"");
@@ -97,6 +136,8 @@ public class GameSystem : MonoBehaviour
         UsernameLabel.SetActive(false);
         PasswordLabel.SetActive(false);
         playTicTacToe.SetActive(false);
+        chatPage.SetActive(false);
+        inRoom = false;
 
         if (newState == GameStates.LoginMenu)
         {
@@ -119,6 +160,8 @@ public class GameSystem : MonoBehaviour
         else if(newState == GameStates.tictactoe)
         {
             playTicTacToe.SetActive(true);
+            chatPage.SetActive(true);
+            inRoom = true;
         }
     }
 }
