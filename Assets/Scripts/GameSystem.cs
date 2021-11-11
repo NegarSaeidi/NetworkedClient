@@ -7,7 +7,7 @@ public class GameSystem : MonoBehaviour
 {
 
 
-    GameObject submitButton, joinRoomButton, userNameInput, passwordInput, createToggle, loginToggle,UsernameLabel, PasswordLabel, playTicTacToe, chatPage, chatInput, chatBox,sendChat;
+    GameObject submitButton, joinRoomButton, userNameInput, passwordInput, createToggle, loginToggle,UsernameLabel, PasswordLabel, playTicTacToe, chatPage, chatInput, chatBox,sendChat,tictactoePanel;
     bool inRoom = false, receivedMsg=true;
     GameObject networkedClient;
     void Start()
@@ -44,6 +44,8 @@ public class GameSystem : MonoBehaviour
                 chatInput = go;
             else if (go.name == "SendChat")
                 sendChat = go;
+            else if (go.name == "Tictactoe")
+                tictactoePanel= go;
 
         }
 
@@ -137,6 +139,7 @@ public class GameSystem : MonoBehaviour
         PasswordLabel.SetActive(false);
         playTicTacToe.SetActive(false);
         chatPage.SetActive(false);
+        tictactoePanel.SetActive(false);
         inRoom = false;
 
         if (newState == GameStates.LoginMenu)
@@ -157,11 +160,17 @@ public class GameSystem : MonoBehaviour
         {
             joinRoomButton.SetActive(true);
         }
-        else if(newState == GameStates.tictactoe)
+        else if(newState == GameStates.chatRoom)
         {
             playTicTacToe.SetActive(true);
             chatPage.SetActive(true);
             inRoom = true;
+      
+        }
+        else if (newState == GameStates.tictactoe)
+        {
+          
+            tictactoePanel.SetActive(true);
         }
     }
 }
@@ -170,5 +179,6 @@ static public class GameStates
     public const int LoginMenu = 1;
     public const int MainMenu = 2;
     public const int waitingInQueue = 3;
-    public const int tictactoe = 4;
+    public const int chatRoom = 4;
+    public const int tictactoe = 5;
 }

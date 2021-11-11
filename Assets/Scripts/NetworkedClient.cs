@@ -17,12 +17,13 @@ public class NetworkedClient : MonoBehaviour
     bool isConnected = false;
     int ourClientID;
 
-    public bool gotReplied = false;
+    public bool gotReplied = false,wait=false,play=false;
 
     GameObject gameSystemObject;
 
-    public string tempBuffer="here";
-
+    public string tempBuffer="here",playerTag="";
+    public string shape = "..";
+    public int PlayerId = -1;
     // Start is called before the first frame update
     void Start()
     {
@@ -101,7 +102,7 @@ public class NetworkedClient : MonoBehaviour
             Debug.Log("Socket open.  Host ID = " + hostID);
 
             connectionID = NetworkTransport.Connect(hostID, "192.168.1.63", socketPort, 0, out error); // server is local on network
-
+        
             if (error == 0)
             {
                 isConnected = true;
@@ -125,7 +126,8 @@ public class NetworkedClient : MonoBehaviour
 
     private void ProcessRecievedMsg(string msg, int id)
     {
-       
+      
+
         Debug.Log("msg recieved = " + msg + ".  connection id = " + id);
       string[] csv =  msg.Split(',');
         int signifier = int.Parse(csv[0]);
@@ -157,17 +159,39 @@ public class NetworkedClient : MonoBehaviour
             gotReplied = true;
             tempBuffer = "Player " + csv[2] + " : " + csv[1] + "\n";
         }
+        else if (signifier == ServerToCientSignifiers.chatStart)
+        {
+            gameSystemObject.GetComponent<GameSystem>().ChangeState(GameStates.chatRoom);
+          
+
+        }
         else if (signifier == ServerToCientSignifiers.GameStart)
         {
+            if (int.Parse(csv[1]) == 1)
+                shape = "circle";
+            else
+                shape = "cross";
+
             gameSystemObject.GetComponent<GameSystem>().ChangeState(GameStates.tictactoe);
+      
+
            
+
         }
         else if (signifier == ServerToCientSignifiers.OpponentPlay)
         {
-           
-            Debug.Log("Opponent play!");
+            play = true;
+            PlayerId = int.Parse(csv[1]);
+            wait = false;
+            playerTag = csv[2];
         }
-      
+        else if (signifier == ServerToCientSignifiers.PlayerWait)
+        {
+            PlayerId = int.Parse(csv[1]);
+            play = false;
+            wait = true;
+        }
+
 
 
 
@@ -187,6 +211,7 @@ static public class ClientToServerSignifiers
     public const int JoinGameRoomQueue = 3;
     public const int TicTacToe = 4;
     public const int chat = 5;
+    public const int Playing = 6;
 }
 static public class ServerToCientSignifiers
 {
@@ -198,4 +223,6 @@ static public class ServerToCientSignifiers
     public const int OpponentPlay = 5;
     public const int GameStart = 6;
     public const int chatReply = 7;
+    public const int chatStart = 8;
+    public const int PlayerWait = 9;
 }
