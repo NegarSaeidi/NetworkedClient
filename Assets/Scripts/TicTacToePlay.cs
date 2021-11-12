@@ -8,7 +8,7 @@ public class TicTacToePlay : MonoBehaviour
     SpriteRenderer spriteRendererObj;
     public Sprite[] image;
     public Sprite playerIcon,OpponentIcon;
-    private bool AlreadyPlayed = false;
+    public bool AlreadyPlayed = false;
     GameObject networkedClient;
    public  GameObject[] adjacents;
     public GameObject turn,deactivate;

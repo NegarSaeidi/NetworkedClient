@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3808018914459639254}
   - component: {fileID: 658940621009061905}
   - component: {fileID: 1842069557886557449}
+  - component: {fileID: 1207901768}
   m_Layer: 0
   m_Name: TL
   m_TagString: TL
@@ -127,6 +128,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1d459efda6ccd074fa3b796b6d624a83, type: 3}
   playerIcon: {fileID: 0}
   OpponentIcon: {fileID: 0}
+  AlreadyPlayed: 0
   adjacents:
   - {fileID: 6466328019183290770}
   - {fileID: 0}
@@ -139,3 +141,18 @@ MonoBehaviour:
   - {fileID: 0}
   turn: {fileID: 0}
   deactivate: {fileID: 0}
+--- !u!114 &1207901768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6466328019183290770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f3777e0826e1654b8c2f761b760fb51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icons:
+  - {fileID: 21300000, guid: 1d459efda6ccd074fa3b796b6d624a83, type: 3}
+  - {fileID: 21300000, guid: 32f3cac934fbcc140a68690c4ef86c7a, type: 3}
