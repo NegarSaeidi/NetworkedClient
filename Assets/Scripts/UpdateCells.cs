@@ -93,91 +93,91 @@ public class UpdateCells : MonoBehaviour
     private void checkWinning()
     {
        
-        if ((TL.GetComponent<SpriteRenderer>().sprite != null) && (TM.GetComponent<SpriteRenderer>().sprite != null) && (TR.GetComponent<SpriteRenderer>().sprite != null))
-            if ((TL.GetComponent<SpriteRenderer>().sprite.name == TM.GetComponent<SpriteRenderer>().sprite.name) && (TM.GetComponent<SpriteRenderer>().sprite.name == TR.GetComponent<SpriteRenderer>().sprite.name))
-            {
+     //   if ((TL.GetComponent<SpriteRenderer>().sprite != null) && (TM.GetComponent<SpriteRenderer>().sprite != null) && (TR.GetComponent<SpriteRenderer>().sprite != null))
+     //       if ((TL.GetComponent<SpriteRenderer>().sprite.name == TM.GetComponent<SpriteRenderer>().sprite.name) && (TM.GetComponent<SpriteRenderer>().sprite.name == TR.GetComponent<SpriteRenderer>().sprite.name))
+     //       {
                
-                if(TL.GetComponent<SpriteRenderer>().sprite.name=="cross")
-                win.GetComponent<Text>().text = "X WON!";
-                else
-                win.GetComponent<Text>().text = "O WON!";
-                win.SetActive(true);
-                replayButton.SetActive(true);
-            }
-           if ((ML.GetComponent<SpriteRenderer>().sprite != null) && (MM.GetComponent<SpriteRenderer>().sprite != null) && (MR.GetComponent<SpriteRenderer>().sprite != null))
-            if ((ML.GetComponent<SpriteRenderer>().sprite.name == MM.GetComponent<SpriteRenderer>().sprite.name) && (MM.GetComponent<SpriteRenderer>().sprite.name == MR.GetComponent<SpriteRenderer>().sprite.name))
-            {
-                if (ML.GetComponent<SpriteRenderer>().sprite.name == "cross")
-                    win.GetComponent<Text>().text = "X WON!";
-                else
-                    win.GetComponent<Text>().text = "O WON!";
-                win.SetActive(true);
-                replayButton.SetActive(true);
-            }
-       if ((DL.GetComponent<SpriteRenderer>().sprite != null) && (DM.GetComponent<SpriteRenderer>().sprite != null) && (DR.GetComponent<SpriteRenderer>().sprite != null))
-            if ((DL.GetComponent<SpriteRenderer>().sprite.name == DM.GetComponent<SpriteRenderer>().sprite.name) && (DM.GetComponent<SpriteRenderer>().sprite.name == DR.GetComponent<SpriteRenderer>().sprite.name))
-            {
-                if (DL.GetComponent<SpriteRenderer>().sprite.name == "cross")
-                    win.GetComponent<Text>().text = "X WON!";
-                else
-                    win.GetComponent<Text>().text = "O WON!";
-                win.SetActive(true);
-                replayButton.SetActive(true);
-            }
+     //           if(TL.GetComponent<SpriteRenderer>().sprite.name=="cross")
+     //           win.GetComponent<Text>().text = "X WON!";
+     //           else
+     //           win.GetComponent<Text>().text = "O WON!";
+     //           win.SetActive(true);
+     //           replayButton.SetActive(true);
+     //       }
+     //      if ((ML.GetComponent<SpriteRenderer>().sprite != null) && (MM.GetComponent<SpriteRenderer>().sprite != null) && (MR.GetComponent<SpriteRenderer>().sprite != null))
+     //       if ((ML.GetComponent<SpriteRenderer>().sprite.name == MM.GetComponent<SpriteRenderer>().sprite.name) && (MM.GetComponent<SpriteRenderer>().sprite.name == MR.GetComponent<SpriteRenderer>().sprite.name))
+     //       {
+     //           if (ML.GetComponent<SpriteRenderer>().sprite.name == "cross")
+     //               win.GetComponent<Text>().text = "X WON!";
+     //           else
+     //               win.GetComponent<Text>().text = "O WON!";
+     //           win.SetActive(true);
+     //           replayButton.SetActive(true);
+     //       }
+     //  if ((DL.GetComponent<SpriteRenderer>().sprite != null) && (DM.GetComponent<SpriteRenderer>().sprite != null) && (DR.GetComponent<SpriteRenderer>().sprite != null))
+     //       if ((DL.GetComponent<SpriteRenderer>().sprite.name == DM.GetComponent<SpriteRenderer>().sprite.name) && (DM.GetComponent<SpriteRenderer>().sprite.name == DR.GetComponent<SpriteRenderer>().sprite.name))
+     //       {
+     //           if (DL.GetComponent<SpriteRenderer>().sprite.name == "cross")
+     //               win.GetComponent<Text>().text = "X WON!";
+     //           else
+     //               win.GetComponent<Text>().text = "O WON!";
+     //           win.SetActive(true);
+     //           replayButton.SetActive(true);
+     //       }
 
-         if ((TL.GetComponent<SpriteRenderer>().sprite != null) && (ML.GetComponent<SpriteRenderer>().sprite != null) && (DL.GetComponent<SpriteRenderer>().sprite != null))
-            if ((TL.GetComponent<SpriteRenderer>().sprite.name == ML.GetComponent<SpriteRenderer>().sprite.name) && (ML.GetComponent<SpriteRenderer>().sprite.name == DL.GetComponent<SpriteRenderer>().sprite.name))
-            {
-                if (TL.GetComponent<SpriteRenderer>().sprite.name == "cross")
-                    win.GetComponent<Text>().text = "X WON!";
-                else
-                    win.GetComponent<Text>().text = "O WON!";
-                win.SetActive(true);
-                replayButton.SetActive(true);
-            }
-        if ((TM.GetComponent<SpriteRenderer>().sprite != null) && (MM.GetComponent<SpriteRenderer>().sprite != null) && (DM.GetComponent<SpriteRenderer>().sprite != null))
-            if ((TM.GetComponent<SpriteRenderer>().sprite.name == MM.GetComponent<SpriteRenderer>().sprite.name) && (MM.GetComponent<SpriteRenderer>().sprite.name == DM.GetComponent<SpriteRenderer>().sprite.name))
-            {
-                Debug.Log("2c");
-                if (TM.GetComponent<SpriteRenderer>().sprite.name == "cross")
-                    win.GetComponent<Text>().text = "X WON!";
-                else
-                    win.GetComponent<Text>().text = "O WON!";
-                win.SetActive(true);
-                replayButton.SetActive(true);
-            }
-     if ((TR.GetComponent<SpriteRenderer>().sprite != null) && (MR.GetComponent<SpriteRenderer>().sprite != null) && (DR.GetComponent<SpriteRenderer>().sprite != null))
-            if ((TR.GetComponent<SpriteRenderer>().sprite.name == MR.GetComponent<SpriteRenderer>().sprite.name) && (MR.GetComponent<SpriteRenderer>().sprite.name == DR.GetComponent<SpriteRenderer>().sprite.name))
-            {
-                Debug.Log("3c");
-                if (TR.GetComponent<SpriteRenderer>().sprite.name == "cross")
-                    win.GetComponent<Text>().text = "X WON!";
-                else
-                    win.GetComponent<Text>().text = "O WON!";
-                win.SetActive(true);
-                replayButton.SetActive(true);
-            }
+     //    if ((TL.GetComponent<SpriteRenderer>().sprite != null) && (ML.GetComponent<SpriteRenderer>().sprite != null) && (DL.GetComponent<SpriteRenderer>().sprite != null))
+     //       if ((TL.GetComponent<SpriteRenderer>().sprite.name == ML.GetComponent<SpriteRenderer>().sprite.name) && (ML.GetComponent<SpriteRenderer>().sprite.name == DL.GetComponent<SpriteRenderer>().sprite.name))
+     //       {
+     //           if (TL.GetComponent<SpriteRenderer>().sprite.name == "cross")
+     //               win.GetComponent<Text>().text = "X WON!";
+     //           else
+     //               win.GetComponent<Text>().text = "O WON!";
+     //           win.SetActive(true);
+     //           replayButton.SetActive(true);
+     //       }
+     //   if ((TM.GetComponent<SpriteRenderer>().sprite != null) && (MM.GetComponent<SpriteRenderer>().sprite != null) && (DM.GetComponent<SpriteRenderer>().sprite != null))
+     //       if ((TM.GetComponent<SpriteRenderer>().sprite.name == MM.GetComponent<SpriteRenderer>().sprite.name) && (MM.GetComponent<SpriteRenderer>().sprite.name == DM.GetComponent<SpriteRenderer>().sprite.name))
+     //       {
+     //           Debug.Log("2c");
+     //           if (TM.GetComponent<SpriteRenderer>().sprite.name == "cross")
+     //               win.GetComponent<Text>().text = "X WON!";
+     //           else
+     //               win.GetComponent<Text>().text = "O WON!";
+     //           win.SetActive(true);
+     //           replayButton.SetActive(true);
+     //       }
+     //if ((TR.GetComponent<SpriteRenderer>().sprite != null) && (MR.GetComponent<SpriteRenderer>().sprite != null) && (DR.GetComponent<SpriteRenderer>().sprite != null))
+     //       if ((TR.GetComponent<SpriteRenderer>().sprite.name == MR.GetComponent<SpriteRenderer>().sprite.name) && (MR.GetComponent<SpriteRenderer>().sprite.name == DR.GetComponent<SpriteRenderer>().sprite.name))
+     //       {
+     //           Debug.Log("3c");
+     //           if (TR.GetComponent<SpriteRenderer>().sprite.name == "cross")
+     //               win.GetComponent<Text>().text = "X WON!";
+     //           else
+     //               win.GetComponent<Text>().text = "O WON!";
+     //           win.SetActive(true);
+     //           replayButton.SetActive(true);
+     //       }
 
-       if ((TL.GetComponent<SpriteRenderer>().sprite != null) && (MM.GetComponent<SpriteRenderer>().sprite != null) && (DR.GetComponent<SpriteRenderer>().sprite != null))
-            if ((TL.GetComponent<SpriteRenderer>().sprite.name == MM.GetComponent<SpriteRenderer>().sprite.name) && (MM.GetComponent<SpriteRenderer>().sprite.name == DR.GetComponent<SpriteRenderer>().sprite.name))
-            {
-                if (TL.GetComponent<SpriteRenderer>().sprite.name == "cross")
-                    win.GetComponent<Text>().text = "X WON!";
-                else
-                    win.GetComponent<Text>().text = "O WON!";
-                win.SetActive(true);
-                replayButton.SetActive(true);
-            }
-        if ((TR.GetComponent<SpriteRenderer>().sprite != null) && (MM.GetComponent<SpriteRenderer>().sprite != null) && (DL.GetComponent<SpriteRenderer>().sprite != null))
-            if ((TR.GetComponent<SpriteRenderer>().sprite.name == MM.GetComponent<SpriteRenderer>().sprite.name) && (MM.GetComponent<SpriteRenderer>().sprite.name == DL.GetComponent<SpriteRenderer>().sprite.name))
-            {
-                if (TR.GetComponent<SpriteRenderer>().sprite.name == "cross")
-                    win.GetComponent<Text>().text = "X WON!";
-                else
-                    win.GetComponent<Text>().text = "O WON!";
-                win.SetActive(true);
-                replayButton.SetActive(true);
-            }
+     //  if ((TL.GetComponent<SpriteRenderer>().sprite != null) && (MM.GetComponent<SpriteRenderer>().sprite != null) && (DR.GetComponent<SpriteRenderer>().sprite != null))
+     //       if ((TL.GetComponent<SpriteRenderer>().sprite.name == MM.GetComponent<SpriteRenderer>().sprite.name) && (MM.GetComponent<SpriteRenderer>().sprite.name == DR.GetComponent<SpriteRenderer>().sprite.name))
+     //       {
+     //           if (TL.GetComponent<SpriteRenderer>().sprite.name == "cross")
+     //               win.GetComponent<Text>().text = "X WON!";
+     //           else
+     //               win.GetComponent<Text>().text = "O WON!";
+     //           win.SetActive(true);
+     //           replayButton.SetActive(true);
+     //       }
+     //   if ((TR.GetComponent<SpriteRenderer>().sprite != null) && (MM.GetComponent<SpriteRenderer>().sprite != null) && (DL.GetComponent<SpriteRenderer>().sprite != null))
+     //       if ((TR.GetComponent<SpriteRenderer>().sprite.name == MM.GetComponent<SpriteRenderer>().sprite.name) && (MM.GetComponent<SpriteRenderer>().sprite.name == DL.GetComponent<SpriteRenderer>().sprite.name))
+     //       {
+     //           if (TR.GetComponent<SpriteRenderer>().sprite.name == "cross")
+     //               win.GetComponent<Text>().text = "X WON!";
+     //           else
+     //               win.GetComponent<Text>().text = "O WON!";
+     //           win.SetActive(true);
+     //           replayButton.SetActive(true);
+     //       }
 
 
     }
