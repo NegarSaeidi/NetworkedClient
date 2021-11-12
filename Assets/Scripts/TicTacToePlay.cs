@@ -63,7 +63,11 @@ public class TicTacToePlay : MonoBehaviour
         if (AlreadyPlayed)
             spriteRendererObj.sprite = playerIcon;
     }
-         
-    
+    public void ResetGame()
+    {
+        AlreadyPlayed = false;
+        spriteRendererObj.sprite = null;
+    }
+
 
 }
