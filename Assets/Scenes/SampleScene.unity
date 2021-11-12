@@ -1704,8 +1704,8 @@ MonoBehaviour:
   turn: {fileID: 1643940140}
   deactivate: {fileID: 223974226}
   TL: {fileID: 1207901766}
-  TM: {fileID: 1274729256}
-  TR: {fileID: 1295807988}
+  TM: {fileID: 1295807988}
+  TR: {fileID: 1274729256}
   ML: {fileID: 441033957}
   MM: {fileID: 1458694807}
   MR: {fileID: 1383450529}
@@ -3495,7 +3495,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 335.9, y: -254.8}
+  m_AnchoredPosition: {x: 341.15002, y: -273.38998}
   m_SizeDelta: {x: 100.1, y: 80.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1475865985
@@ -4512,7 +4512,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Replay
+  m_Text: 'Play Again
 
 '
 --- !u!222 &1737130283
