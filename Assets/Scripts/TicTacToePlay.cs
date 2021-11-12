@@ -12,6 +12,7 @@ public class TicTacToePlay : MonoBehaviour
     GameObject networkedClient;
    public  GameObject[] adjacents;
     public GameObject turn,deactivate;
+    
 
     private void Awake()
     {
