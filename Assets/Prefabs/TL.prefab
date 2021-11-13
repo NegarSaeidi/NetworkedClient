@@ -156,3 +156,7 @@ MonoBehaviour:
   icons:
   - {fileID: 21300000, guid: 1d459efda6ccd074fa3b796b6d624a83, type: 3}
   - {fileID: 21300000, guid: 32f3cac934fbcc140a68690c4ef86c7a, type: 3}
+  playButton: {fileID: 0}
+  image:
+  - {fileID: 21300000, guid: 32f3cac934fbcc140a68690c4ef86c7a, type: 3}
+  - {fileID: 21300000, guid: 1d459efda6ccd074fa3b796b6d624a83, type: 3}
