@@ -12,17 +12,17 @@ public class TicTacToePlay : MonoBehaviour
     GameObject networkedClient;
    public  GameObject[] adjacents;
     public GameObject turn,deactivate;
-    
+    public bool isActive = true;
 
     private void Awake()
     {
         spriteRendererObj = GetComponent<SpriteRenderer>();
-
+        
 
     }
     private void Start()
     {
-       
+        isActive = true;
         spriteRendererObj.sprite = null;
         GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
        
@@ -49,6 +49,7 @@ public class TicTacToePlay : MonoBehaviour
   
     private void OnMouseDown()
     {
+        if(isActive)
         if (spriteRendererObj.sprite==null)
         {
             string msg = ClientToServerSignifiers.Playing + "," + gameObject.tag;

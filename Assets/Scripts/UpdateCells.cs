@@ -25,13 +25,13 @@ public class UpdateCells : MonoBehaviour
                 networkedClient = go;
             else if (go.name == "TR")
                 tictactoePlay = go;
-            else if (go.name == "Replay")
-                replayButton= go;
+            //else if (go.name == "Replay")
+            //    replayButton= go;
          
         }
-        replayButton.SetActive(false);
+        //replayButton.SetActive(false);
         playButton.SetActive(false);
-        replayButton.GetComponent<Button>().onClick.AddListener(replayButtonPressed);
+        //replayButton.GetComponent<Button>().onClick.AddListener(replayButtonPressed);
 
     }
     public void replayButtonPressed()
@@ -84,11 +84,20 @@ public class UpdateCells : MonoBehaviour
            
            
             deactivate.SetActive(true);
+            for (int i = 0; i < adjacents.Length; i++)
+            {
+                adjacents[i].GetComponent<TicTacToePlay>().isActive = false; 
+               
+            }
 
         }
         else if ((networkedClient.GetComponent<NetworkedClient>().play))
         {
-         
+            for (int i = 0; i < adjacents.Length; i++)
+            {
+                adjacents[i].GetComponent<TicTacToePlay>().isActive = true;
+
+            }
             deactivate.SetActive(false);
 
             for (int i = 0; i < adjacents.Length; i++)
@@ -119,7 +128,7 @@ public class UpdateCells : MonoBehaviour
                     win.GetComponent<Text>().text = "O WON!";
                 win.SetActive(true);
                 playButton.SetActive(true);
-                replayButton.SetActive(true);
+                //replayButton.SetActive(true);
             }
         if ((ML.GetComponent<SpriteRenderer>().sprite != null) && (MM.GetComponent<SpriteRenderer>().sprite != null) && (MR.GetComponent<SpriteRenderer>().sprite != null))
             if ((ML.GetComponent<SpriteRenderer>().sprite.name == MM.GetComponent<SpriteRenderer>().sprite.name) && (MM.GetComponent<SpriteRenderer>().sprite.name == MR.GetComponent<SpriteRenderer>().sprite.name))
@@ -130,7 +139,7 @@ public class UpdateCells : MonoBehaviour
                     win.GetComponent<Text>().text = "O WON!";
                 win.SetActive(true);
                 playButton.SetActive(true);
-                replayButton.SetActive(true);
+                //replayButton.SetActive(true);
             }
         if ((DL.GetComponent<SpriteRenderer>().sprite != null) && (DM.GetComponent<SpriteRenderer>().sprite != null) && (DR.GetComponent<SpriteRenderer>().sprite != null))
             if ((DL.GetComponent<SpriteRenderer>().sprite.name == DM.GetComponent<SpriteRenderer>().sprite.name) && (DM.GetComponent<SpriteRenderer>().sprite.name == DR.GetComponent<SpriteRenderer>().sprite.name))
@@ -141,7 +150,7 @@ public class UpdateCells : MonoBehaviour
                     win.GetComponent<Text>().text = "O WON!";
                 win.SetActive(true);
                 playButton.SetActive(true);
-                replayButton.SetActive(true);
+                //replayButton.SetActive(true);
             }
 
         if ((TL.GetComponent<SpriteRenderer>().sprite != null) && (ML.GetComponent<SpriteRenderer>().sprite != null) && (DL.GetComponent<SpriteRenderer>().sprite != null))
@@ -153,7 +162,7 @@ public class UpdateCells : MonoBehaviour
                     win.GetComponent<Text>().text = "O WON!";
                 win.SetActive(true);
                 playButton.SetActive(true);
-                replayButton.SetActive(true);
+                //replayButton.SetActive(true);
             }
         if ((TM.GetComponent<SpriteRenderer>().sprite != null) && (MM.GetComponent<SpriteRenderer>().sprite != null) && (DM.GetComponent<SpriteRenderer>().sprite != null))
             if ((TM.GetComponent<SpriteRenderer>().sprite.name == MM.GetComponent<SpriteRenderer>().sprite.name) && (MM.GetComponent<SpriteRenderer>().sprite.name == DM.GetComponent<SpriteRenderer>().sprite.name))
@@ -168,7 +177,7 @@ public class UpdateCells : MonoBehaviour
                 }
                 win.SetActive(true);
                 playButton.SetActive(true);
-                replayButton.SetActive(true);
+                //replayButton.SetActive(true);
 
             }
         if ((TR.GetComponent<SpriteRenderer>().sprite != null) && (MR.GetComponent<SpriteRenderer>().sprite != null) && (DR.GetComponent<SpriteRenderer>().sprite != null))
@@ -181,7 +190,7 @@ public class UpdateCells : MonoBehaviour
                     win.GetComponent<Text>().text = "O WON!";
                 win.SetActive(true);
                 playButton.SetActive(true);
-                replayButton.SetActive(true);
+                //replayButton.SetActive(true);
             }
 
         if ((TL.GetComponent<SpriteRenderer>().sprite != null) && (MM.GetComponent<SpriteRenderer>().sprite != null) && (DR.GetComponent<SpriteRenderer>().sprite != null))
@@ -193,7 +202,7 @@ public class UpdateCells : MonoBehaviour
                     win.GetComponent<Text>().text = "O WON!";
                 win.SetActive(true);
                 playButton.SetActive(true);
-                replayButton.SetActive(true);
+                //replayButton.SetActive(true);
             }
         if ((TR.GetComponent<SpriteRenderer>().sprite != null) && (MM.GetComponent<SpriteRenderer>().sprite != null) && (DL.GetComponent<SpriteRenderer>().sprite != null))
             if ((TR.GetComponent<SpriteRenderer>().sprite.name == MM.GetComponent<SpriteRenderer>().sprite.name) && (MM.GetComponent<SpriteRenderer>().sprite.name == DL.GetComponent<SpriteRenderer>().sprite.name))
@@ -204,7 +213,7 @@ public class UpdateCells : MonoBehaviour
                     win.GetComponent<Text>().text = "O WON!";
                 win.SetActive(true);
                 playButton.SetActive(true);
-                replayButton.SetActive(true);
+                //replayButton.SetActive(true);
             }
 
 
