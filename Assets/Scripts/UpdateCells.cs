@@ -27,6 +27,7 @@ public class UpdateCells : MonoBehaviour
                 tictactoePlay = go;
             else if (go.name == "Replay")
                 replayButton= go;
+         
         }
         replayButton.SetActive(false);
         playButton.SetActive(false);
@@ -48,6 +49,8 @@ public class UpdateCells : MonoBehaviour
         deactivate.SetActive(false);
         win.SetActive(false);
         replayButton.SetActive(false);
+        playButton.SetActive(false);
+       
         TL.GetComponent<SpriteRenderer>().sprite = null;
         TM.GetComponent<SpriteRenderer>().sprite = null;
         TR.GetComponent<SpriteRenderer>().sprite = null;
@@ -57,6 +60,17 @@ public class UpdateCells : MonoBehaviour
         ML.GetComponent<SpriteRenderer>().sprite = null;
         MM.GetComponent<SpriteRenderer>().sprite = null;
         MR.GetComponent<SpriteRenderer>().sprite = null;
+
+        TL.GetComponent<ReplayController>().resetGame();
+        TM.GetComponent<ReplayController>().resetGame();
+        TR.GetComponent<ReplayController>().resetGame();
+        ML.GetComponent<ReplayController>().resetGame();
+        MM.GetComponent<ReplayController>().resetGame();
+        MR.GetComponent<ReplayController>().resetGame();
+        DL.GetComponent<ReplayController>().resetGame();
+        DM.GetComponent<ReplayController>().resetGame();
+        DR.GetComponent<ReplayController>().resetGame();
+
         networkedClient.GetComponent<NetworkedClient>().wait = false;
         networkedClient.GetComponent<NetworkedClient>().play = false;
         networkedClient.GetComponent<NetworkedClient>().playerTag = "";

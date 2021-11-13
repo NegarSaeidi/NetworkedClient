@@ -47,7 +47,7 @@ public class ReplayController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("please!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        
         if (play)
         {
             play = !play;
@@ -92,23 +92,21 @@ public class ReplayController : MonoBehaviour
     }
     private void goBackToFrame(float frame)
     {
-        Debug.Log("hiuiouoiku");
+        
         currentFrameIndex = frame;
         SaveRecords tempRecord = records[(int)frame];
         Debug.Log((int)frame+ "  " + records[(int)frame].SpriteName);
         if (tempRecord.SpriteName != "")
             {
-            Debug.Log("here" );
+           
             if (playerInitialIcon.name == tempRecord.SpriteName)
             {
-                Debug.Log("----" + tempRecord.SpriteName);
-                Debug.Log("++++" + playerInitialIcon);
+                
                 GetComponent<SpriteRenderer>().sprite = playerInitialIcon;
             }
             else
             {
-                Debug.Log("..........." + tempRecord.SpriteName);
-                Debug.Log(",,,,,,,,,,,,,," +OpponentInitialIcon);
+                
                 GetComponent<SpriteRenderer>().sprite = OpponentInitialIcon;
             }
             //tictactoePlay.AlreadyPlayed = true;
@@ -123,6 +121,12 @@ public class ReplayController : MonoBehaviour
             }
         
       
+
+    }
+    public void resetGame()
+    {
+        GetComponent<SpriteRenderer>().sprite = null;
+        play = false;
 
     }
 }

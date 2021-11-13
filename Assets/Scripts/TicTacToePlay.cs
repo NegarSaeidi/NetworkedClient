@@ -46,6 +46,7 @@ public class TicTacToePlay : MonoBehaviour
 
 
     }
+  
     private void OnMouseDown()
     {
         if (spriteRendererObj.sprite==null)
